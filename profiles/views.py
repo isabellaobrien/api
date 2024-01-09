@@ -3,6 +3,7 @@ from rest_framework import generics, filters
 from .models import Profile
 from .serializers import ProfileSerializer
 from social.permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
@@ -12,7 +13,11 @@ class ProfileList(generics.ListAPIView):
     ).order_by('-created_at')
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner__followed__owner__profile',
     ]
     ordering_fields = [
         'post_count',
@@ -20,7 +25,6 @@ class ProfileList(generics.ListAPIView):
         'following_count',
         'owner__following__created_at',
         'owner__followed__created_at',
-        'owner__followed__owner__profile',
     ]
 
     serializer_class = ProfileSerializer
