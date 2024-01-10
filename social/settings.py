@@ -63,9 +63,9 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
-
-ALLOWED_HOSTS = ['8000-isabellaobrien-api-l0qn15n9ykb.ws-eu107.gitpod.io']
+# DEBUG = 'DEV' in os.environ
+DEBUG = True
+ALLOWED_HOSTS = ['8000-isabellaobrien-api-l0qn15n9ykb.ws-eu107.gitpod.io', 'pp5-api-backend-822273010b59.herokuapp.com']
 
 
 # Application definition
