@@ -1,3 +1,4 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import Comment
 from comment_likes.models import CommentLike
@@ -10,6 +11,8 @@ class CommentSerializer(serializers.ModelSerializer):
     comment_like_id = serializers.SerializerMethodField()
     comment_likes_count = serializers.ReadOnlyField()
     comment_reply_count = serializers.ReadOnlyField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
 
 
     def get_is_owner(self, obj):
@@ -24,6 +27,12 @@ class CommentSerializer(serializers.ModelSerializer):
             ).first()
             return comment_like.id if comment_like else None
         return None
+    
+    def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
+
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)
 
     class Meta:
         model = Comment
