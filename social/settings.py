@@ -66,7 +66,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '8000-isabellaobrien-api-l0qn15n9ykb.ws-eu107.gitpod.io', 
+    '8000-isabellaobrien-api-6jeevhhaol8.ws-eu109.gitpod.io', 
     os.environ.get('ALLOWED_HOST'),
     ]
 
@@ -100,6 +100,7 @@ INSTALLED_APPS = [
     'followers',
     'comment_likes',
     'comment_reply',
+    'reply_likes',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
