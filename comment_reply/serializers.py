@@ -24,7 +24,7 @@ class CommentReplySerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.is_authenticated:
             reply_like = ReplyLike.objects.filter(
-                 owner=user, comment=obj
+                 owner=user, reply=obj
             ).first()
             return reply_like.id if reply_like else None
         return None
